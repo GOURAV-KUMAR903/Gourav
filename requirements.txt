@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+mysql-connector-python
+jinja2
+mysql-connector-python
+python-dotenv
