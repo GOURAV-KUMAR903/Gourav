@@ -4,3 +4,4 @@ mysql-connector-python
 jinja2
 mysql-connector-python
 python-dotenv
+psycopg2-binary
