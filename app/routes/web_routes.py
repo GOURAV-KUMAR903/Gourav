@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from app.helpers.view_loader import render_view
-from app.db import cursor  # 👈 IMPORTANT
+import app.db.connection as db
 
 router = APIRouter()
 
@@ -12,9 +12,8 @@ def home():
 
 @router.get("/db-test")
 def test_db():
-    cursor.execute("SELECT 1")
-    result = cursor.fetchone()
+    db.cursor.execute("SELECT 1")
     return {
         "status": "DB connected",
-        "result": result
+        "result": db.cursor.fetchone()
     }
