@@ -3,6 +3,7 @@ from app.helpers.view_loader import render_view
 from app.db.connection import get_conn
 from app.controllers.user_controller import create_user
 from fastapi.responses import RedirectResponse
+from fastapi import Request
 
 router = APIRouter()
 
