@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from app.helpers.view_loader import render_view
-from app.db import connection
+from app.db.connection import get_conn
 
 router = APIRouter()
 
@@ -10,10 +10,13 @@ def home():
         "message": "Hello Render 🚀"
     })
 
+
 @router.get("/db-test")
 def test_db():
-    connection.cursor.execute("SELECT 1")
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute("SELECT 1")
     return {
         "status": "MySQL connected",
-        "result": connection.cursor.fetchone()
+        "result": cursor.fetchone()
     }
