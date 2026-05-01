@@ -14,6 +14,6 @@ def home():
 def test_db():
     connection.cursor.execute("SELECT 1")
     return {
-        "status": "DB connected",
+        "status": "MySQL connected",
         "result": connection.cursor.fetchone()
     }
