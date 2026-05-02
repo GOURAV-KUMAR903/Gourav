@@ -1,16 +1,18 @@
 import os
-from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-templates = Jinja2Templates(
-    directory=os.path.join(BASE_DIR, "views", "templates")
-)
-
-def render_view(request, template_name: str, context: dict = None):
+def render_view(template_name: str, context: dict = None) -> HTMLResponse:
     context = context or {}
 
-    return templates.TemplateResponse(template_name, {
-        "request": request,
-        **context
-    })
+    file_path = os.path.join(BASE_DIR, "views", "templates", template_name)
+
+    with open(file_path, "r", encoding="utf-8") as f:
+        html = f.read()
+
+    # SIMPLE VARIABLE REPLACEMENT (NO JINJA)
+    for key, value in context.items():
+        html = html.replace(f"{{{{ {key} }}}}", str(value))
+
+    return HTMLResponse(content=html)
