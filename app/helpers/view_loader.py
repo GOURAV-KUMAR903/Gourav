@@ -1,3 +1,8 @@
+import os
+from fastapi.responses import HTMLResponse
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
 def render_view(template_name: str, context: dict = None) -> HTMLResponse:
     context = context or {}
 
