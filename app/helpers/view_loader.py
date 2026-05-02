@@ -11,18 +11,7 @@ def render_view(template_name: str, context: dict = None) -> HTMLResponse:
     with open(file_path, "r", encoding="utf-8") as f:
         html = f.read()
 
-    message = context.get("message")
-
-    if message:
-        context["message_html"] = f"""
-        <div class="alert alert-success text-center">
-          {message}
-        </div>
-        """
-    else:
-        context["message_html"] = ""
-
-    # SIMPLE VARIABLE REPLACEMENT
+    # SIMPLE VARIABLE REPLACEMENT (NO JINJA)
     for key, value in context.items():
         html = html.replace(f"{{{{ {key} }}}}", str(value))
 
