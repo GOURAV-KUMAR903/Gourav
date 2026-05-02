@@ -22,7 +22,7 @@ def test_db():
         "result": cursor.fetchone()
     }
     
-router.get("/register")
+@router.get("/register")
 def register():
     return render_view("form.html", {"message": ""})
 
