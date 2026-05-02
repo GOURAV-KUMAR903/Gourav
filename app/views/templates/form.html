@@ -4,10 +4,7 @@
     <title>Page Title</title>
   </head>
   <body>
-    {{% if message %}}
     <p style="color: green">{{ message }}</p>
-    {{% endif %}}
-
     <form action="/users/create" method="post">
       <input type="text" name="name" placeholder="Enter Name" required />
       <br /><br />
