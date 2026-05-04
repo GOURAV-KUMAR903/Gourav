@@ -35,7 +35,6 @@ def register(request: Request):
     return render_view("form.html", {
         "message": message
     })
-
 @router.post("/users/create")
 def user_create(
     name: str = Form(...),
@@ -43,4 +42,4 @@ def user_create(
     password: str = Form(...)
 ):
     create_user(name, email, password)
-    return  message
+    return RedirectResponse(url="/register?success=1", status_code=303)
